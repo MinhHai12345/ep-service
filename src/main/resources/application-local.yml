@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+app:
+  elasticPath:
+    url: https://useast.api.elasticpath.com
+    urlV2: https://useast.api.elasticpath.com/v2
+    clientID: ULYEqnLgyZnJoqL00fCwPHLki689jn3b27zMaZ0eZM
+    storeID: 12bb98c6-4abf-409f-889e-608d40e6c088
+    clientSecret: 8fDrgGPo3CoIJ6dQElYtjm0VWbqjcGA2k1B7QtNjqt
+    grand-type: client_credentials
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+  publisher-returns: true
+  virtual-host: /
+  queue:
+    create-product-queue: producer-create-product
