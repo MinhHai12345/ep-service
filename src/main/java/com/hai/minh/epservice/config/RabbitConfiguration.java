@@ -2,7 +2,9 @@ package com.hai.minh.epservice.config;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hai.minh.epservice.commons.constants.RabbitConstants;
 import com.hai.minh.epservice.config.props.RabbitConfigProperties;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -39,4 +41,19 @@ public class RabbitConfiguration {
         return template;
     }
 
+    @Bean
+    public Queue queueUpdateEpProduct() {
+        return new Queue(RabbitConstants.QUEUE_UPDATE_ID_EP_PRODUCT, true);
+    }
+
+    @Bean
+    public Exchange directExchange() {
+        return new DirectExchange(RabbitConstants.DIRECT_EXCHANGE_NAME, true, false);
+    }
+
+    @Bean
+    public Binding queueBinding() {
+        return new Binding(RabbitConstants.QUEUE_UPDATE_ID_EP_PRODUCT, Binding.DestinationType.QUEUE,
+                RabbitConstants.DIRECT_EXCHANGE_NAME, "", null);
+    }
 }

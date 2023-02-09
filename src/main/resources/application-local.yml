@@ -19,3 +19,4 @@ rabbitmq:
   virtual-host: /
   queue:
     create-product-queue: producer-create-product
+    update-id-ep-product: update-id-ep-product

@@ -8,6 +8,9 @@ import com.hai.minh.epservice.service.EPProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -27,10 +30,13 @@ public class EPProductServiceImpl implements EPProductService {
             if (epProductDto != null) {
                 EPData<EPProductDto> request = new EPData<>();
                 request.setData(epProductDto);
-                if (apiEPProduct.checkSKUProduct(request.getData().getSku())) {
+                List<EPProductDto> epProductDtoList = apiEPProduct.findSKUProduct(request.getData().getSku());
+                if (CollectionUtils.isEmpty(epProductDtoList)) {
                     apiEPProduct.createEPProduct(request);
-                    return true;
+                } else {
+                    apiEPProduct.updateEPProduct(epProductDtoList.get(0).getId(), request);
                 }
+                return true;
             }
             log.info("END PROCESS CREATE PRODUCT TO EP");
         } catch (Exception e) {

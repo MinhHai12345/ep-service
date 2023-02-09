@@ -1,6 +1,5 @@
 package com.hai.minh.epservice.config.props;
 
-
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -22,4 +21,7 @@ public class RabbitConfigProperties {
 
     @Value("${rabbitmq.queue.create-product-queue}")
     private String queueCreateProduct;
+
+    @Value("${rabbitmq.queue.update-id-ep-product}")
+    private String queueSendIdEpProduct;
 }
