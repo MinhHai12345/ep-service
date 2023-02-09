@@ -1,4 +1,4 @@
-package com.hai.minh.epservice.dtos;
+package com.hai.minh.epservice.dtos.token;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

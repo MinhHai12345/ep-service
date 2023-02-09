@@ -1,4 +1,4 @@
-package com.hai.minh.epservice.dtos;
+package com.hai.minh.epservice.dtos.products;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

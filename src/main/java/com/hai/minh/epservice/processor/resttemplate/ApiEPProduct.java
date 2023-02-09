@@ -1,6 +1,6 @@
 package com.hai.minh.epservice.processor.resttemplate;
 
-import com.hai.minh.epservice.dtos.EPProductDto;
+import com.hai.minh.epservice.dtos.products.EPProductDto;
 import com.hai.minh.epservice.dtos.common.EPData;
 
 import java.util.List;

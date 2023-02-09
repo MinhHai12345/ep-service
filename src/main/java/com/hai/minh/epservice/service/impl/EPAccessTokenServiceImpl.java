@@ -3,7 +3,7 @@ package com.hai.minh.epservice.service.impl;
 
 import com.hai.minh.epservice.commons.constants.EPConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
-import com.hai.minh.epservice.dtos.EPToken;
+import com.hai.minh.epservice.dtos.token.EPToken;
 import com.hai.minh.epservice.service.EPAccessTokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

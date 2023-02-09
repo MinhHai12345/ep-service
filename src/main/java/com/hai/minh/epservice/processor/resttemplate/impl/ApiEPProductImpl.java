@@ -2,7 +2,7 @@ package com.hai.minh.epservice.processor.resttemplate.impl;
 
 import com.hai.minh.epservice.commons.constants.EPConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
-import com.hai.minh.epservice.dtos.EPProductDto;
+import com.hai.minh.epservice.dtos.products.EPProductDto;
 import com.hai.minh.epservice.dtos.common.EPData;
 import com.hai.minh.epservice.dtos.common.EPListData;
 import com.hai.minh.epservice.processor.resttemplate.ApiEPProduct;

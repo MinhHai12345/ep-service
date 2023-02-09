@@ -1,9 +1,8 @@
-package com.hai.minh.epservice.dtos.common;
+package com.hai.minh.epservice.dtos.carts.commons;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hai.minh.epservice.dtos.carts.EPCartDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,13 +16,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class EPData<T> implements Serializable {
+public class EPCartData<T> implements Serializable {
 
-    private static final long serialVersionUID = -6444319184862460309L;
+    private static final long serialVersionUID = 6951886300503215568L;
 
     @JsonProperty("data")
     private T data;
-
-    @JsonProperty("meta")
-    private Meta meta;
 }

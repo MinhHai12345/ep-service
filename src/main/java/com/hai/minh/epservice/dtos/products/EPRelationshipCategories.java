@@ -1,4 +1,4 @@
-package com.hai.minh.epservice.dtos;
+package com.hai.minh.epservice.dtos.products;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,10 +10,10 @@ import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EPRelationshipBrands implements Serializable {
+public class EPRelationshipCategories implements Serializable {
 
-    private static final long serialVersionUID = 8703694799645713194L;
+    private static final long serialVersionUID = -7624200960209981139L;
 
     @JsonProperty("data")
-    private List<DataCommon> dataBrands;
+    private List<DataCommon> dataCategories;
 }

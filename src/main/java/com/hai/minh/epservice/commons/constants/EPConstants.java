@@ -26,6 +26,8 @@ public class EPConstants {
      */
     public static final String DASHES = "-";
 
+    public static final String SLASH_SYMBOL = "/";
+
     public static final String SLASH = "\"";
 
     public static final String EQUALS = "=";
@@ -43,6 +45,7 @@ public class EPConstants {
 
     public static final String PRODUCT_FILTER = "/products?filter=";
 
+    public static final String CART_URL = "/carts";
 
     /**
      * PRODUCT

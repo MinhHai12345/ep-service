@@ -1,6 +1,6 @@
 package com.hai.minh.epservice.service.impl;
 
-import com.hai.minh.epservice.dtos.EPProductDto;
+import com.hai.minh.epservice.dtos.products.EPProductDto;
 import com.hai.minh.epservice.dtos.common.EPData;
 import com.hai.minh.epservice.helpler.JsonHelper;
 import com.hai.minh.epservice.processor.resttemplate.ApiEPProduct;

@@ -1,4 +1,4 @@
-package com.hai.minh.epservice.dtos;
+package com.hai.minh.epservice.dtos.products;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +17,7 @@ public class EPProductMeta implements Serializable {
     private TimeStamps timeStamps;
 
     @JsonProperty("display_price")
-    private EPDisplayPrice displayPrice;
+    private EPProductDisplayPrice displayPrice;
 
     @JsonProperty("stock")
     private EPStock stock;
