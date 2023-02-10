@@ -5,7 +5,11 @@ public class URLConstants {
     public static final String SUBDIRECTORY_API = "/api";
     public static final String URL_CART = "/cart";
 
+    public static final String URL_CART_ITEM = "/cart-item";
+
     public static final String URL_CUSTOMER = "/customer";
+
+    public static final String URL_ITEMS = "/items";
 
     // EP
     public static final String EP_CUSTOMER_URL = "/customers";

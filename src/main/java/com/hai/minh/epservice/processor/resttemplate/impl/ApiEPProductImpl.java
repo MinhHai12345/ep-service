@@ -3,9 +3,9 @@ package com.hai.minh.epservice.processor.resttemplate.impl;
 import com.hai.minh.epservice.commons.constants.EPConstants;
 import com.hai.minh.epservice.commons.constants.URLConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
-import com.hai.minh.epservice.dtos.products.EPProductDto;
 import com.hai.minh.epservice.dtos.common.EPData;
 import com.hai.minh.epservice.dtos.common.EPListData;
+import com.hai.minh.epservice.dtos.products.EPProductDto;
 import com.hai.minh.epservice.processor.resttemplate.ApiEPProduct;
 import com.hai.minh.epservice.utils.EPUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -42,12 +42,13 @@ public class ApiEPProductImpl implements ApiEPProduct {
     public EPProductDto createEPProduct(EPData<EPProductDto> request) {
         try {
             if (request != null) {
-                final HttpHeaders headers = epUtils.buildHeaders();
-                final HttpEntity<EPData<EPProductDto>> entity = new HttpEntity<>(request, headers);
+                HttpHeaders headers = epUtils.buildHeaders();
+                HttpEntity<EPData<EPProductDto>> entity = new HttpEntity<>(request, headers);
+                String url = configProperties.getEpPathV2() + URLConstants.EP_PRODUCT_URL;
 
-                final String url = configProperties.getEpPathV2() + URLConstants.EP_PRODUCT_URL;
-                ResponseEntity<EPData<EPProductDto>> response = restTemplate.exchange(url, HttpMethod.POST, entity, new ParameterizedTypeReference<EPData<EPProductDto>>() {
-                });
+                ResponseEntity<EPData<EPProductDto>> response = restTemplate
+                        .exchange(url, HttpMethod.POST, entity, new ParameterizedTypeReference<EPData<EPProductDto>>() {
+                        });
                 boolean isSuccess = HttpStatus.OK.equals(response.getStatusCode());
                 if (isSuccess && ObjectUtils.isNotEmpty(response.getBody().getData())) {
                     return response.getBody().getData();
@@ -64,11 +65,11 @@ public class ApiEPProductImpl implements ApiEPProduct {
         try {
             log.info("start update ep product with id {}", id);
             request.getData().setId(id);
-            final HttpHeaders headers = epUtils.buildHeaders();
-            final HttpEntity<EPData<EPProductDto>> entity = new HttpEntity<>(request, headers);
+            HttpHeaders headers = epUtils.buildHeaders();
+            HttpEntity<EPData<EPProductDto>> entity = new HttpEntity<>(request, headers);
 
-            final String url = configProperties.getEpPathV2() + URLConstants.EP_PRODUCT_URL + EPConstants.SLASH_SYMBOL + id;
-            final ResponseEntity<EPData<EPProductDto>> response = restTemplate
+            String url = configProperties.getEpPathV2() + URLConstants.EP_PRODUCT_URL + EPConstants.SLASH_SYMBOL + id;
+            ResponseEntity<EPData<EPProductDto>> response = restTemplate
                     .exchange(url, HttpMethod.PUT, entity, new ParameterizedTypeReference<EPData<EPProductDto>>() {
                     });
             boolean isSuccess = HttpStatus.OK.equals(response.getStatusCode());
@@ -84,14 +85,14 @@ public class ApiEPProductImpl implements ApiEPProduct {
     @Override
     public List<EPProductDto> findSKUProduct(String sku) {
         try {
-            final HttpHeaders headers = epUtils.buildHeaders();
-            final HttpEntity<Void> entity = new HttpEntity<>(headers);
+            HttpHeaders headers = epUtils.buildHeaders();
+            HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-            final String skuValue = "eq(sku," + sku + ")";
+            String skuValue = "eq(sku," + sku + ")";
             String url = configProperties.getEpPathV2() +
                     URLConstants.EP_PRODUCT_FILTER + skuValue;
 
-            final ResponseEntity<EPListData<EPProductDto>> response = restTemplate
+            ResponseEntity<EPListData<EPProductDto>> response = restTemplate
                     .exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<EPListData<EPProductDto>>() {
                     });
             boolean isSuccess = HttpStatus.OK.equals(response.getStatusCode());
