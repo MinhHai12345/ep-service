@@ -8,20 +8,14 @@ import org.springframework.context.annotation.Configuration;
 @Data
 public class RabbitConfigProperties {
     @Value("${rabbitmq.host}")
-    private String addresses;
+    private String host;
 
     @Value("${rabbitmq.port}")
-    private String port;
+    private Integer port;
 
     @Value("${rabbitmq.username}")
     private String username;
 
     @Value("${rabbitmq.password}")
     private String password;
-
-    @Value("${rabbitmq.queue.create-product-queue}")
-    private String queueCreateProduct;
-
-    @Value("${rabbitmq.queue.update-id-ep-product}")
-    private String queueSendIdEpProduct;
 }

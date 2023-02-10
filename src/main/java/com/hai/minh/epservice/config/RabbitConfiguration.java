@@ -26,7 +26,7 @@ public class RabbitConfiguration {
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setAddresses(rabbitProperties.getAddresses() + ":" + rabbitProperties.getPort());
+        connectionFactory.setAddresses(rabbitProperties.getHost() + ":" + rabbitProperties.getPort());
         connectionFactory.setUsername(rabbitProperties.getUsername());
         connectionFactory.setPassword(rabbitProperties.getPassword());
         connectionFactory.setPublisherConfirms(true);

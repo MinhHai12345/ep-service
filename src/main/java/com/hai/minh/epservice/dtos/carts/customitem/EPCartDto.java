@@ -1,11 +1,11 @@
-package com.hai.minh.epservice.dtos.carts;
+package com.hai.minh.epservice.dtos.carts.customitem;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hai.minh.epservice.dtos.carts.commons.EPCartLinksDto;
-import com.hai.minh.epservice.dtos.carts.commons.EPCartMetaDto;
-import lombok.Getter;
+import com.hai.minh.epservice.dtos.common.EPMeta;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -38,5 +38,5 @@ public class EPCartDto implements Serializable {
     private EPCartLinksDto links;
 
     @JsonProperty("meta")
-    private EPCartMetaDto meta;
+    private EPMeta meta;
 }

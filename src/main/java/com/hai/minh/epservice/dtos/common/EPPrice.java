@@ -1,4 +1,4 @@
-package com.hai.minh.epservice.dtos.products;
+package com.hai.minh.epservice.dtos.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EPProductPrice implements Serializable {
+public class EPPrice implements Serializable {
 
     private static final long serialVersionUID = 7115364657600813456L;
 

@@ -2,6 +2,8 @@ package com.hai.minh.epservice.dtos.products;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hai.minh.epservice.dtos.common.EPPrice;
+import com.hai.minh.epservice.dtos.common.EPMeta;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -29,13 +31,13 @@ public class EPProductDto extends EPProductBaseDto implements Serializable {
     private boolean manageStock;
 
     @JsonProperty("price")
-    private List<EPProductPrice> price;
+    private List<EPPrice> price;
 
     @JsonProperty("commodity_type")
     private String commodityType;
 
     @JsonProperty("meta")
-    private EPProductMeta meta;
+    private EPMeta meta;
 
     @JsonProperty("weight")
     private EPProductWeight weight;

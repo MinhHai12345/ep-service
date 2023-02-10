@@ -3,7 +3,6 @@ package com.hai.minh.epservice.dtos.common;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hai.minh.epservice.dtos.carts.EPCartDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +24,10 @@ public class EPData<T> implements Serializable {
     private T data;
 
     @JsonProperty("meta")
-    private Meta meta;
+    private PageMeta pageMeta;
+
+
+    public EPData(T data) {
+        this.data = data;
+    }
 }

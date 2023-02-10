@@ -1,6 +1,7 @@
 package com.hai.minh.epservice.processor.resttemplate.impl;
 
 import com.hai.minh.epservice.commons.constants.EPConstants;
+import com.hai.minh.epservice.commons.constants.URLConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
 import com.hai.minh.epservice.dtos.products.EPProductDto;
 import com.hai.minh.epservice.dtos.common.EPData;
@@ -8,7 +9,6 @@ import com.hai.minh.epservice.dtos.common.EPListData;
 import com.hai.minh.epservice.processor.resttemplate.ApiEPProduct;
 import com.hai.minh.epservice.utils.EPUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -18,6 +18,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -44,7 +45,7 @@ public class ApiEPProductImpl implements ApiEPProduct {
                 final HttpHeaders headers = epUtils.buildHeaders();
                 final HttpEntity<EPData<EPProductDto>> entity = new HttpEntity<>(request, headers);
 
-                final String url = configProperties.getEpPathV2() + EPConstants.PRODUCT_URL;
+                final String url = configProperties.getEpPathV2() + URLConstants.EP_PRODUCT_URL;
                 ResponseEntity<EPData<EPProductDto>> response = restTemplate.exchange(url, HttpMethod.POST, entity, new ParameterizedTypeReference<EPData<EPProductDto>>() {
                 });
                 boolean isSuccess = HttpStatus.OK.equals(response.getStatusCode());
@@ -66,7 +67,7 @@ public class ApiEPProductImpl implements ApiEPProduct {
             final HttpHeaders headers = epUtils.buildHeaders();
             final HttpEntity<EPData<EPProductDto>> entity = new HttpEntity<>(request, headers);
 
-            final String url = configProperties.getEpPathV2() + EPConstants.PRODUCT_URL + id;
+            final String url = configProperties.getEpPathV2() + URLConstants.EP_PRODUCT_URL + EPConstants.SLASH_SYMBOL + id;
             final ResponseEntity<EPData<EPProductDto>> response = restTemplate
                     .exchange(url, HttpMethod.PUT, entity, new ParameterizedTypeReference<EPData<EPProductDto>>() {
                     });
@@ -88,13 +89,13 @@ public class ApiEPProductImpl implements ApiEPProduct {
 
             final String skuValue = "eq(sku," + sku + ")";
             String url = configProperties.getEpPathV2() +
-                    EPConstants.PRODUCT_FILTER + skuValue;
+                    URLConstants.EP_PRODUCT_FILTER + skuValue;
 
             final ResponseEntity<EPListData<EPProductDto>> response = restTemplate
                     .exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<EPListData<EPProductDto>>() {
                     });
             boolean isSuccess = HttpStatus.OK.equals(response.getStatusCode());
-            if (isSuccess && CollectionUtils.isNotEmpty(response.getBody().getData())) {
+            if (isSuccess && !CollectionUtils.isEmpty(response.getBody().getData())) {
                 return response.getBody().getData();
             }
         } catch (Exception e) {

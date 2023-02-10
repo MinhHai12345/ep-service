@@ -1,8 +1,8 @@
-package com.hai.minh.epservice.controllers;
+package com.hai.minh.epservice.controllers.api;
 
 import com.hai.minh.epservice.commons.constants.URLConstants;
 import com.hai.minh.epservice.controllers.commons.AbstractController;
-import com.hai.minh.epservice.dtos.carts.EPCartDto;
+import com.hai.minh.epservice.dtos.carts.customitem.EPCartDto;
 import com.hai.minh.epservice.service.EPCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +20,14 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(URLConstants.SUBDIRECTORY_API)
 public class CartController extends AbstractController {
 
     @Autowired
     private EPCartService epCartService;
 
     @GetMapping(value = URLConstants.URL_CART + "/getCart/{id}")
-    public ResponseEntity<Map<String, Object>> addCart(@NotNull(message = "id not null") @PathVariable("id") String id) {
+    public ResponseEntity<Map<String, Object>> getCart(@NotNull(message = "id not null") @PathVariable("id") String id) {
         return success(epCartService.getCart(id));
     }
 

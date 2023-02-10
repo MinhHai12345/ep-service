@@ -1,6 +1,6 @@
 package com.hai.minh.epservice.service;
 
-import com.hai.minh.epservice.dtos.carts.EPCartDto;
+import com.hai.minh.epservice.dtos.carts.customitem.EPCartDto;
 
 public interface EPCartService {
     EPCartDto createCart(EPCartDto request);

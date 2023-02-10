@@ -13,39 +13,11 @@ public class EPConstants {
 
     public static final String STORE_ID = "x-moltin-auth-store";
 
-    public static final String TOKEN_TYPE_BEARER = "Bearer";
-
-    public static final String AUTHORIZATION = "Authorization";
-
-    public static final String EXPIRES_AT = "expiresAt";
-
-    public static final String CLIENT_CREDENTIALS = "client_credentials";
-
     /**
      * ORTHER
      */
-    public static final String DASHES = "-";
 
     public static final String SLASH_SYMBOL = "/";
-
-    public static final String SLASH = "\"";
-
-    public static final String EQUALS = "=";
-
-    public static final String WHITE_SPACE = " ";
-
-    /**
-     * URL
-     */
-    public static final String OAUTH = "/oauth";
-
-    public static final String ACCESS_TOKEN = "/access_token";
-
-    public static final String PRODUCT_URL = "/products/";
-
-    public static final String PRODUCT_FILTER = "/products?filter=";
-
-    public static final String CART_URL = "/carts";
 
     /**
      * PRODUCT

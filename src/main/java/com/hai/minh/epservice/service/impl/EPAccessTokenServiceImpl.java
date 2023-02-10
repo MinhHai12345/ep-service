@@ -2,6 +2,7 @@ package com.hai.minh.epservice.service.impl;
 
 
 import com.hai.minh.epservice.commons.constants.EPConstants;
+import com.hai.minh.epservice.commons.constants.URLConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
 import com.hai.minh.epservice.dtos.token.EPToken;
 import com.hai.minh.epservice.service.EPAccessTokenService;
@@ -44,7 +45,7 @@ public class EPAccessTokenServiceImpl implements EPAccessTokenService {
         body.add(EPConstants.GRANT_TYPE, configProperties.getGrantType());
 
         HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
-        String url = configProperties.getEpPath() + EPConstants.OAUTH + EPConstants.ACCESS_TOKEN;
+        String url = configProperties.getEpPath() + URLConstants.OAUTH + URLConstants.ACCESS_TOKEN;
         try {
             EPToken token = restTemplate.exchange(url, HttpMethod.POST, entity,
                     new ParameterizedTypeReference<EPToken>() {

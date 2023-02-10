@@ -8,13 +8,15 @@ import java.io.Serializable;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TimeStamps implements Serializable {
-
-    private static final long serialVersionUID = 8540203894194925081L;
+public class EPTimeStamp implements Serializable {
+    private static final long serialVersionUID = -7884685273124218999L;
 
     @JsonProperty("created_at")
-    private String createAt;
+    private String createdAt;
 
     @JsonProperty("updated_at")
     private String updatedAt;
+
+    @JsonProperty("expires_at")
+    private String expiresAt;
 }

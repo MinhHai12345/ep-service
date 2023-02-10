@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class Meta implements Serializable {
+public class PageMeta implements Serializable {
 
     private static final long serialVersionUID = 2614293973089944697L;
     @JsonProperty("results")

@@ -15,8 +15,3 @@ rabbitmq:
   port: 5672
   username: guest
   password: guest
-  publisher-returns: true
-  virtual-host: /
-  queue:
-    create-product-queue: producer-create-product
-    update-id-ep-product: update-id-ep-product

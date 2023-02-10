@@ -20,5 +20,5 @@ public class EPListData<T> implements Serializable {
     private Links links;
 
     @JsonProperty("meta")
-    private Meta meta;
+    private PageMeta pageMeta;
 }
