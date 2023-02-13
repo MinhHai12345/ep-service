@@ -5,7 +5,6 @@ import com.hai.minh.epservice.commons.constants.URLConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
 import com.hai.minh.epservice.dtos.carts.customitem.EPCartItemDto;
 import com.hai.minh.epservice.dtos.common.EPData;
-import com.hai.minh.epservice.dtos.common.EPListData;
 import com.hai.minh.epservice.processor.resttemplate.ApiEPCustomItemCart;
 import com.hai.minh.epservice.utils.EPUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -43,8 +42,8 @@ public class ApiEPCustomItemCartImpl implements ApiEPCustomItemCart {
             String url = epConfigProperties.getEpPathV2() + URLConstants.EP_CART_URL
                     + EPConstants.SLASH_SYMBOL + cartId + URLConstants.URL_ITEMS;
 
-            ResponseEntity<EPListData<EPCartItemDto>> response = restTemplate
-                    .exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<EPListData<EPCartItemDto>>() {
+            ResponseEntity<EPData<List<EPCartItemDto>>> response = restTemplate
+                    .exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
                     });
 
             boolean isSuccessful = HttpStatus.OK.equals(response.getStatusCode());
@@ -66,8 +65,8 @@ public class ApiEPCustomItemCartImpl implements ApiEPCustomItemCart {
             String url = epConfigProperties.getEpPathV2() + URLConstants.EP_CART_URL
                     + EPConstants.SLASH_SYMBOL + cartId + URLConstants.URL_ITEMS;
 
-            ResponseEntity<EPListData<EPCartItemDto>> response = restTemplate
-                    .exchange(url, HttpMethod.POST, entity, new ParameterizedTypeReference<EPListData<EPCartItemDto>>() {
+            ResponseEntity<EPData<List<EPCartItemDto>>> response = restTemplate
+                    .exchange(url, HttpMethod.POST, entity, new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
                     });
 
             boolean isSuccessful = HttpStatus.CREATED.equals(response.getStatusCode());
@@ -90,8 +89,8 @@ public class ApiEPCustomItemCartImpl implements ApiEPCustomItemCart {
                     + EPConstants.SLASH_SYMBOL + cartId
                     + URLConstants.URL_ITEMS + EPConstants.SLASH_SYMBOL + cartItemDto.getId();
 
-            ResponseEntity<EPListData<EPCartItemDto>> response = restTemplate
-                    .exchange(url, HttpMethod.PUT, entity, new ParameterizedTypeReference<EPListData<EPCartItemDto>>() {
+            ResponseEntity<EPData<List<EPCartItemDto>>> response = restTemplate
+                    .exchange(url, HttpMethod.PUT, entity, new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
                     });
 
             boolean isSuccessful = HttpStatus.OK.equals(response.getStatusCode());

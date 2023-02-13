@@ -2,12 +2,11 @@ package com.hai.minh.epservice.dtos.carts.customitem;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hai.minh.epservice.dtos.carts.commons.EPTaxDetailDTO;
+import com.hai.minh.epservice.dtos.common.EPImage;
 import com.hai.minh.epservice.dtos.common.EPPrice;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -35,9 +34,19 @@ public class EPCartItemDto implements Serializable {
     @JsonProperty("code")
     private String code;
 
-    @JsonProperty("tax")
-    private List<EPTaxDetailDTO> tax;
+    @JsonProperty("manage_stock")
+    private boolean stock;
+
+    @JsonProperty("image")
+    private EPImage image;
+
 
     @JsonProperty("price")
     private EPPrice price;
+
+    @JsonProperty("unit_price")
+    private EPPrice unitPrice;
+
+    @JsonProperty("value")
+    private EPPrice value;
 }

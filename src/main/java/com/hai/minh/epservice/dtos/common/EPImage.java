@@ -4,22 +4,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
 
+@Data
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class EPData<T> implements Serializable {
+public class EPImage implements Serializable {
+    private static final long serialVersionUID = 8372430254335423733L;
 
-    private static final long serialVersionUID = -6444319184862460309L;
+    @JsonProperty("mime_type")
+    private String mimeType;
 
-    @JsonProperty("data")
-    private T data;
+    @JsonProperty("file_name")
+    private String fileName;
+
+    @JsonProperty("href")
+    private String href;
 }

@@ -4,7 +4,6 @@ import com.hai.minh.epservice.commons.constants.EPConstants;
 import com.hai.minh.epservice.commons.constants.URLConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
 import com.hai.minh.epservice.dtos.common.EPData;
-import com.hai.minh.epservice.dtos.common.EPListData;
 import com.hai.minh.epservice.dtos.products.EPProductDto;
 import com.hai.minh.epservice.processor.resttemplate.ApiEPProduct;
 import com.hai.minh.epservice.utils.EPUtils;
@@ -92,8 +91,8 @@ public class ApiEPProductImpl implements ApiEPProduct {
             String url = configProperties.getEpPathV2() +
                     URLConstants.EP_PRODUCT_FILTER + skuValue;
 
-            ResponseEntity<EPListData<EPProductDto>> response = restTemplate
-                    .exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<EPListData<EPProductDto>>() {
+            ResponseEntity<EPData<List<EPProductDto>>> response = restTemplate
+                    .exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<EPData<List<EPProductDto>>>() {
                     });
             boolean isSuccess = HttpStatus.OK.equals(response.getStatusCode());
             if (isSuccess && !CollectionUtils.isEmpty(response.getBody().getData())) {
