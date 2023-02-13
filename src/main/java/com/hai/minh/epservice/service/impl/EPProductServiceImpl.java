@@ -3,8 +3,9 @@ package com.hai.minh.epservice.service.impl;
 import com.hai.minh.epservice.dtos.products.EPProductDto;
 import com.hai.minh.epservice.dtos.common.EPData;
 import com.hai.minh.epservice.helpler.JsonHelper;
-import com.hai.minh.epservice.processor.resttemplate.ApiEPProduct;
+import com.hai.minh.epservice.repository.ep.EPProductRepository;
 import com.hai.minh.epservice.service.EPProductService;
+import com.hai.minh.epservice.utils.EPFilterUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class EPProductServiceImpl implements EPProductService {
     private JsonHelper jsonHelper;
 
     @Autowired
-    private ApiEPProduct apiEPProduct;
+    private EPProductRepository epProductRepository;
 
     @Override
     public boolean processorCreateProductToEP(String message) {
@@ -30,11 +31,16 @@ public class EPProductServiceImpl implements EPProductService {
             if (epProductDto != null) {
                 EPData<EPProductDto> request = new EPData<>();
                 request.setData(epProductDto);
-                List<EPProductDto> epProductDtoList = apiEPProduct.findSKUProduct(request.getData().getSku());
+
+                EPFilterUtils<EPProductDto> epFilterUtils = new EPFilterUtils<>();
+                String name = epFilterUtils.findFieldName(request.getData() ,request.getData().getSku());
+                String param = epFilterUtils.buildFilter(name, request.getData().getSku(), null);
+
+                List<EPProductDto> epProductDtoList = epProductRepository.filterEPProduct(param);
                 if (CollectionUtils.isEmpty(epProductDtoList)) {
-                    apiEPProduct.createEPProduct(request);
+                    epProductRepository.createEPProduct(request);
                 } else {
-                    apiEPProduct.updateEPProduct(epProductDtoList.get(0).getId(), request);
+                    epProductRepository.updateEPProduct(epProductDtoList.get(0).getId(), request);
                 }
                 return true;
             }

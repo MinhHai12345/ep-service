@@ -16,7 +16,7 @@ public class ConsumerEPProduct {
 
     @RabbitListener(queues = RabbitConstants.QUEUE_CREATE_EP_PRODUCT)
     public void receiveMessage(String message) {
-        log.info("receiveMessage: {}", message);
-//        epProductService.processorCreateProductToEP(message);
+//        log.info("receiveMessage: {}", message);
+        epProductService.processorCreateProductToEP(message);
     }
 }

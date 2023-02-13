@@ -1,14 +1,14 @@
-package com.hai.minh.epservice.processor.resttemplate.impl;
+package com.hai.minh.epservice.repository.ep.impl;
 
 import com.hai.minh.epservice.commons.constants.EPConstants;
 import com.hai.minh.epservice.commons.constants.URLConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
 import com.hai.minh.epservice.dtos.carts.customitem.EPCartItemDto;
 import com.hai.minh.epservice.dtos.common.EPData;
-import com.hai.minh.epservice.processor.resttemplate.ApiEPCustomItemCart;
+import com.hai.minh.epservice.repository.ep.EPItemCartRepository;
 import com.hai.minh.epservice.utils.EPUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class ApiEPCustomItemCartImpl implements ApiEPCustomItemCart {
+public class EPItemCartRepositoryImpl implements EPItemCartRepository {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -42,14 +42,14 @@ public class ApiEPCustomItemCartImpl implements ApiEPCustomItemCart {
             String url = epConfigProperties.getEpPathV2() + URLConstants.EP_CART_URL
                     + EPConstants.SLASH_SYMBOL + cartId + URLConstants.URL_ITEMS;
 
-            ResponseEntity<EPData<List<EPCartItemDto>>> response = restTemplate
-                    .exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
-                    });
-
-            boolean isSuccessful = HttpStatus.OK.equals(response.getStatusCode());
-            if (isSuccessful && ObjectUtils.isNotEmpty(response.getBody().getData())) {
-                log.info("Get custom item cart success with id {}", response.getBody().getData());
-                return response.getBody().getData();
+            EPData<List<EPCartItemDto>> response = restTemplate
+                    .exchange(url, HttpMethod.GET, entity,
+                            new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
+                            })
+                    .getBody();
+            if (response != null && CollectionUtils.isNotEmpty(response.getData())) {
+                log.info("Get custom item cart success with id {}", response.getData());
+                return response.getData();
             }
         } catch (Exception e) {
             log.error("failed to get cart item -- {}", e.getMessage());
@@ -65,14 +65,14 @@ public class ApiEPCustomItemCartImpl implements ApiEPCustomItemCart {
             String url = epConfigProperties.getEpPathV2() + URLConstants.EP_CART_URL
                     + EPConstants.SLASH_SYMBOL + cartId + URLConstants.URL_ITEMS;
 
-            ResponseEntity<EPData<List<EPCartItemDto>>> response = restTemplate
-                    .exchange(url, HttpMethod.POST, entity, new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
-                    });
-
-            boolean isSuccessful = HttpStatus.CREATED.equals(response.getStatusCode());
-            if (isSuccessful && ObjectUtils.isNotEmpty(response.getBody().getData())) {
-                log.info("Create custom item cart success with id {}", response.getBody().getData());
-                return response.getBody().getData();
+            EPData<List<EPCartItemDto>> response = restTemplate
+                    .exchange(url, HttpMethod.POST, entity,
+                            new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
+                            })
+                    .getBody();
+            if (response != null && CollectionUtils.isNotEmpty(response.getData())) {
+                log.info("Create custom item cart success with id {}", response.getData());
+                return response.getData();
             }
         } catch (Exception e) {
             log.error("failed to create custom item to cart -- {}", e.getMessage());
@@ -89,14 +89,14 @@ public class ApiEPCustomItemCartImpl implements ApiEPCustomItemCart {
                     + EPConstants.SLASH_SYMBOL + cartId
                     + URLConstants.URL_ITEMS + EPConstants.SLASH_SYMBOL + cartItemDto.getId();
 
-            ResponseEntity<EPData<List<EPCartItemDto>>> response = restTemplate
-                    .exchange(url, HttpMethod.PUT, entity, new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
-                    });
-
-            boolean isSuccessful = HttpStatus.OK.equals(response.getStatusCode());
-            if (isSuccessful && ObjectUtils.isNotEmpty(response.getBody().getData())) {
-                log.info("Update custom item cart success with id {}", response.getBody().getData());
-                return response.getBody().getData();
+            EPData<List<EPCartItemDto>> response = restTemplate
+                    .exchange(url, HttpMethod.PUT, entity,
+                            new ParameterizedTypeReference<EPData<List<EPCartItemDto>>>() {
+                            })
+                    .getBody();
+            if (response != null && CollectionUtils.isNotEmpty(response.getData())) {
+                log.info("Update custom item cart success with id {}", response.getData());
+                return response.getData();
             }
         } catch (Exception e) {
             log.error("failed to update cart item -- {}", e.getMessage());
@@ -114,9 +114,9 @@ public class ApiEPCustomItemCartImpl implements ApiEPCustomItemCart {
                     + URLConstants.URL_ITEMS + EPConstants.SLASH_SYMBOL + itemId;
 
             ResponseEntity<?> response = restTemplate
-                    .exchange(url, HttpMethod.DELETE, entity, new ParameterizedTypeReference<String>() {
-                    });
-
+                    .exchange(url, HttpMethod.DELETE, entity,
+                            new ParameterizedTypeReference<String>() {
+                            });
             boolean isSuccessful = HttpStatus.OK.equals(response.getStatusCode());
             if (isSuccessful) {
                 log.info("Delete custom item cart success with cart id {} and item id {}", cartId, itemId);

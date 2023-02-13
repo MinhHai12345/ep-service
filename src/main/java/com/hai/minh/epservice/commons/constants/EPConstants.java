@@ -1,5 +1,7 @@
 package com.hai.minh.epservice.commons.constants;
 
+import java.util.Map;
+
 public class EPConstants {
 
     /**
@@ -19,16 +21,12 @@ public class EPConstants {
 
     public static final String SLASH_SYMBOL = "/";
 
+    public static final String LIKE = "like";
+
+    public static final String EQ = "eq";
+
     /**
      * PRODUCT
      */
-    public static final String PHYSICAL = "physical";
-
-    public static final String NO_DESCRIPTION = "NO DESCRIPTION";
-
-    public static final String USD = "USD";
-
-    public static final String PRODUCT = "product";
-
-    public static final String LIVE = "live";
+    public static final String DESCRIPTION = "description";
 }

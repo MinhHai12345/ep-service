@@ -1,10 +1,10 @@
-package com.hai.minh.epservice.processor.resttemplate;
+package com.hai.minh.epservice.repository.ep;
 
 import com.hai.minh.epservice.dtos.carts.customitem.EPCartItemDto;
 
 import java.util.List;
 
-public interface ApiEPCustomItemCart {
+public interface EPItemCartRepository {
 
     List<EPCartItemDto> getCustomItemCart(String cartId);
 

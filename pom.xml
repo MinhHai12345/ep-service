@@ -17,6 +17,7 @@
 		<java.version>1.8</java.version>
 		<lang3.vesion>3.12.0</lang3.vesion>
 		<validation.version>2.0.1.Final</validation.version>
+		<collections4.version>4.4</collections4.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,6 +47,11 @@
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>${validation.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>${collections4.version}</version>
 		</dependency>
 	</dependencies>
 

@@ -1,14 +1,13 @@
-package com.hai.minh.epservice.processor.resttemplate.impl;
+package com.hai.minh.epservice.repository.ep.impl;
 
 import com.hai.minh.epservice.commons.constants.EPConstants;
 import com.hai.minh.epservice.commons.constants.URLConstants;
 import com.hai.minh.epservice.config.props.EPConfigProperties;
 import com.hai.minh.epservice.dtos.carts.customitem.EPCartDto;
 import com.hai.minh.epservice.dtos.common.EPData;
-import com.hai.minh.epservice.processor.resttemplate.ApiEPCart;
+import com.hai.minh.epservice.repository.ep.EPCartRepository;
 import com.hai.minh.epservice.utils.EPUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -21,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Component
-public class ApiEPCartImpl implements ApiEPCart {
+public class EPCartRepositoryImpl implements EPCartRepository {
 
     @Autowired
     private EPUtils epUtils;
@@ -35,18 +34,18 @@ public class ApiEPCartImpl implements ApiEPCart {
     @Override
     public EPCartDto getCartFromEPCart(String id) {
         try {
-            final HttpHeaders headers = epUtils.buildHeaders();
+            HttpHeaders headers = epUtils.buildHeaders();
             HttpEntity<?> entity = new HttpEntity<>(headers);
             String url = epConfigProperties.getEpPathV2() + URLConstants.EP_CART_URL
                     + EPConstants.SLASH_SYMBOL + id;
 
-            ResponseEntity<EPData<EPCartDto>> response = restTemplate
-                    .exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<EPData<EPCartDto>>() {
-                    });
-
-            boolean isSuccess = HttpStatus.OK.equals(response.getStatusCode());
-            if (isSuccess && ObjectUtils.isNotEmpty(response.getBody().getData())) {
-                return response.getBody().getData();
+            EPData<EPCartDto> response = restTemplate
+                    .exchange(url, HttpMethod.GET, entity,
+                            new ParameterizedTypeReference<EPData<EPCartDto>>() {
+                            })
+                    .getBody();
+            if (response != null && response.getData() != null) {
+                return response.getData();
             }
         } catch (Exception e) {
             log.error("error create cart to ep -- {}", e.getMessage());
@@ -57,17 +56,17 @@ public class ApiEPCartImpl implements ApiEPCart {
     @Override
     public EPCartDto createCartToEPCart(EPCartDto request) {
         try {
-            final HttpHeaders headers = epUtils.buildHeaders();
+            HttpHeaders headers = epUtils.buildHeaders();
             HttpEntity<EPData<EPCartDto>> entity = new HttpEntity<>(new EPData<>(request), headers);
             String url = epConfigProperties.getEpPathV2() + URLConstants.EP_CART_URL;
 
-            ResponseEntity<EPData<EPCartDto>> response = restTemplate
-                    .exchange(url, HttpMethod.POST, entity, new ParameterizedTypeReference<EPData<EPCartDto>>() {
-                    });
-
-            boolean isSuccess = HttpStatus.CREATED.equals(response.getStatusCode());
-            if (isSuccess && ObjectUtils.isNotEmpty(response.getBody().getData())) {
-                return response.getBody().getData();
+            EPData<EPCartDto> response = restTemplate
+                    .exchange(url, HttpMethod.POST, entity,
+                            new ParameterizedTypeReference<EPData<EPCartDto>>() {
+                            })
+                    .getBody();
+            if (response != null && response.getData() != null) {
+                return response.getData();
             }
         } catch (Exception e) {
             log.error("error create cart to ep -- {}", e.getMessage());
@@ -83,13 +82,13 @@ public class ApiEPCartImpl implements ApiEPCart {
             String url = epConfigProperties.getEpPathV2() + URLConstants.EP_CART_URL
                     + EPConstants.SLASH_SYMBOL + id;
 
-            ResponseEntity<EPData<EPCartDto>> response = restTemplate
-                    .exchange(url, HttpMethod.PUT, entity, new ParameterizedTypeReference<EPData<EPCartDto>>() {
-                    });
-
-            boolean isSuccess = HttpStatus.OK.equals(response.getStatusCode());
-            if (isSuccess && ObjectUtils.isNotEmpty(response.getBody().getData())) {
-                return response.getBody().getData();
+            EPData<EPCartDto> response = restTemplate
+                    .exchange(url, HttpMethod.PUT, entity,
+                            new ParameterizedTypeReference<EPData<EPCartDto>>() {
+                            })
+                    .getBody();
+            if (response != null && response.getData() != null) {
+                return response.getData();
             }
         } catch (Exception e) {
             log.error("error create cart to ep -- {}", e.getMessage());

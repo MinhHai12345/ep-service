@@ -1,8 +1,8 @@
-package com.hai.minh.epservice.processor.resttemplate;
+package com.hai.minh.epservice.repository.ep;
 
 import com.hai.minh.epservice.dtos.carts.customitem.EPCartDto;
 
-public interface ApiEPCart {
+public interface EPCartRepository {
     EPCartDto createCartToEPCart(EPCartDto request);
 
     EPCartDto getCartFromEPCart(String id);
