@@ -33,8 +33,9 @@ public class EPProductServiceImpl implements EPProductService {
                 request.setData(epProductDto);
 
                 EPFilterUtils<EPProductDto> epFilterUtils = new EPFilterUtils<>();
-                String name = epFilterUtils.findFieldName(request.getData() ,request.getData().getSku());
-                String param = epFilterUtils.buildFilter(name, request.getData().getSku(), null);
+                String value = request.getData().getSku();
+                String name = epFilterUtils.findFieldName(request.getData(), value);
+                String param = epFilterUtils.buildFilter(name, value, null);
 
                 List<EPProductDto> epProductDtoList = epProductRepository.filterEPProduct(param);
                 if (CollectionUtils.isEmpty(epProductDtoList)) {
